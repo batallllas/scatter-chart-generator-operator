@@ -18,13 +18,26 @@
         }.bind(this));
 
         MashupPlatform.wiring.registerCallback("x-data-serie", function (data) {
-            xData = data;
+            xData = parseInput(data, "X axis");
             plotChart();
         });
         MashupPlatform.wiring.registerCallback("y-data-serie", function (data) {
-            yData = data;
+            yData = parseInput(data, "Y axis");
             plotChart();
         });
+    };
+
+    // Allow stringified json as input
+    var parseInput = function (data, endpoint) {
+        if (typeof data == "string") {
+            try {
+                data = JSON.parse(data);
+            } catch (e) {
+                throw new MashupPlatform.wiring.EndpointTypeError(endpoint + " input has no valid JSON");
+            }
+        }
+
+        return data;
     };
 
     var plotChart = function plotChart() {
