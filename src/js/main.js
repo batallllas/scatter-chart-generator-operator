@@ -77,7 +77,7 @@
             },
             yAxis: {
                 title: {
-                    text: MashupPlatform.prefs.get('x-axis-label') || ""
+                    text: MashupPlatform.prefs.get('y-axis-label') || ""
                 }
             },
             legend: {
