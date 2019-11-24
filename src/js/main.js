@@ -142,7 +142,7 @@
 
             xAxis: {
                 type: 'value',
-                name: 'wefeqfew',
+                name: MashupPlatform.prefs.get('x-axis-label') || ' ',
                 nameLocation: 'middle',
                 nameGap: 30,
 
@@ -154,7 +154,7 @@
             },
             yAxis: {
                 type: 'value',
-                name: 'fwefewf',
+                name: MashupPlatform.prefs.get('y-axis-label') || ' ',
                 nameLocation: 'middle',
                 nameRotate: 90,
                 nameGap: 38,
@@ -166,6 +166,7 @@
 
             },
             series: [{
+                animation: MashupPlatform.prefs.get('animation'),
                 symbolSize: 18,
                 data: series,
                 type: 'scatter'
