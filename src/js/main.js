@@ -57,124 +57,137 @@
             series.push([xData[i], yData[i]]);
         }
 
-        // highchart options
-        var HighChartOptions = {
-            chart: {
-                type: 'scatter',
-                zoomType: 'xy'
-            },
-            title: {
-                text: MashupPlatform.prefs.get('title')
-            },
-            xAxis: {
-                title: {
-                    enabled: true,
-                    text: MashupPlatform.prefs.get('x-axis-label') || ""
+
+        if (MashupPlatform.wiring.hasOutputConnections("HighChart-options")) {
+            // highchart options
+            var HighChartOptions = {
+                chart: {
+                    type: 'scatter',
+                    zoomType: 'xy'
                 },
-                startOnTick: true,
-                endOnTick: true,
-                showLastLabel: true
-            },
-            yAxis: {
                 title: {
-                    text: MashupPlatform.prefs.get('y-axis-label') || ""
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100,
-                y: 70,
-                floating: true,
-                backgroundColor: '#FFFFFF',
-                borderWidth: 1
-            },
-            plotOptions: {
-                scatter: {
-                    marker: {
-                        radius: 5,
+                    text: MashupPlatform.prefs.get('title')
+                },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: MashupPlatform.prefs.get('x-axis-label') || ""
+                    },
+                    startOnTick: true,
+                    endOnTick: true,
+                    showLastLabel: true
+                },
+                yAxis: {
+                    title: {
+                        text: MashupPlatform.prefs.get('y-axis-label') || ""
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 70,
+                    floating: true,
+                    backgroundColor: '#FFFFFF',
+                    borderWidth: 1
+                },
+                plotOptions: {
+                    scatter: {
+                        marker: {
+                            radius: 5,
+                            states: {
+                                hover: {
+                                    enabled: true,
+                                    lineColor: 'rgb(100,100,100)'
+                                }
+                            }
+                        },
                         states: {
                             hover: {
-                                enabled: true,
-                                lineColor: 'rgb(100,100,100)'
+                                marker: {
+                                    enabled: false
+                                }
                             }
+                        },
+                        tooltip: {
+                            headerFormat: '<b>{point.x} - {point.y}</b><br>',
+                            pointFormat: ''
                         }
-                    },
-                    states: {
-                        hover: {
-                            marker: {
-                                enabled: false
-                            }
-                        }
-                    },
-                    tooltip: {
-                        headerFormat: '<b>{point.x} - {point.y}</b><br>',
-                        pointFormat: ''
                     }
-                }
-            },
-            series: [{
-                animation: MashupPlatform.prefs.get('animation'),
-                data: series
-            }]
-        };
+                },
+                series: [{
+                    animation: MashupPlatform.prefs.get('animation'),
+                    data: series
+                }]
+            };
 
-        MashupPlatform.wiring.pushEvent("HighChart-options", HighChartOptions);
-
-
-        var EChartOptions = {
-
-            title: {
-                text: MashupPlatform.prefs.get('title') || ' ',
-                top: '-5'
-            },
-
-            grid: {
-                left: '56',
-            },
-
-            lineStyle: {
-                normal: {
-                    type: 'solid'
-                }
-            },
-
-            xAxis: {
-                type: 'value',
-                name: MashupPlatform.prefs.get('x-axis-label') || ' ',
-                nameLocation: 'middle',
-                nameGap: 30,
-
-                nameTextStyle: {
-                    fontSize: 16,
-                    fontWeight: 80
-                }
-
-            },
-            yAxis: {
-                type: 'value',
-                name: MashupPlatform.prefs.get('y-axis-label') || ' ',
-                nameLocation: 'middle',
-                nameRotate: 90,
-                nameGap: 38,
-                nameTextStyle: {
-                    fontSize: 16,
-                    fontWeight: 80
-                }
+            MashupPlatform.wiring.pushEvent("HighChart-options", HighChartOptions);
 
 
-            },
-            series: [{
-                animation: MashupPlatform.prefs.get('animation'),
-                symbolSize: 18,
-                data: series,
-                type: 'scatter'
-            }]
-        };
+        }
 
-        // Push the ECharts options
-        MashupPlatform.wiring.pushEvent("EChart-options", EChartOptions);
+        if (MashupPlatform.wiring.hasOutputConnections("EChart-options")) {
+
+            var EChartOptions = {
+
+                title: {
+                    text: MashupPlatform.prefs.get('title') || ' ',
+                    top: '-5'
+                },
+
+                grid: {
+                    left: '56',
+                    top: '35'
+                },
+
+                tooltip: {
+                    formatter: '{a}: ({c})'
+                },
+
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+
+                xAxis: {
+                    type: 'value',
+                    name: MashupPlatform.prefs.get('x-axis-label') || ' ',
+                    nameLocation: 'middle',
+                    nameGap: 28,
+
+                    nameTextStyle: {
+                        fontSize: 16,
+                        fontWeight: 80
+                    }
+
+                },
+                yAxis: {
+                    type: 'value',
+                    name: MashupPlatform.prefs.get('y-axis-label') || ' ',
+                    nameLocation: 'middle',
+                    nameRotate: 90,
+                    nameGap: 38,
+                    nameTextStyle: {
+                        fontSize: 16,
+                        fontWeight: 80
+                    }
+
+
+                },
+                series: [{
+                    animation: MashupPlatform.prefs.get('animation'),
+                    symbolSize: 18,
+                    data: series,
+                    type: 'scatter'
+                }]
+            };
+
+            // Push the ECharts options
+            MashupPlatform.wiring.pushEvent("EChart-options", EChartOptions);
+
+        }
 
     };
 
