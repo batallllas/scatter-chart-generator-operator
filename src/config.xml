@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="scatter-chart-generator" version="0.1.1">
+<operator xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="CoNWeT" name="scatter-chart-generator" version="0.2.0">
 
     <details>
         <title>Scatter chart generator</title>
@@ -20,6 +20,7 @@
         <preference name="title" type="text" label="Chart Title" description="Title used for the chart" default=""/>
         <preference name="x-axis-label" type="text" label="X axis label" description="Label for the X-axis" default=""/>
         <preference name="y-axis-label" type="text" label="Y axis label" description="Label for the Y-axis" default=""/>
+        <preference name="animation" type="boolean" label="animations" description="enable/disable chart animations" default="true"/>
     </preferences>
 
     <wiring>

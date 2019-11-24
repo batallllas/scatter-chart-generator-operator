@@ -115,6 +115,7 @@
                 }
             },
             series: [{
+                animation: MashupPlatform.prefs.get('animation'),
                 data: series
             }]
         };
