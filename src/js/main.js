@@ -58,7 +58,7 @@
         }
 
         // highchart options
-        var options = {
+        var HighChartOptions = {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy'
@@ -120,7 +120,61 @@
             }]
         };
 
-        MashupPlatform.wiring.pushEvent("chart-options", options);
+        MashupPlatform.wiring.pushEvent("HighChart-options", HighChartOptions);
+
+
+        var EChartOptions = {
+
+            title: {
+                text: MashupPlatform.prefs.get('title') || ' ',
+                top: '-5'
+            },
+
+            grid: {
+                left: '56',
+            },
+
+            lineStyle: {
+                normal: {
+                    type: 'solid'
+                }
+            },
+
+            xAxis: {
+                type: 'value',
+                name: 'wefeqfew',
+                nameLocation: 'middle',
+                nameGap: 30,
+
+                nameTextStyle: {
+                    fontSize: 16,
+                    fontWeight: 80
+                }
+
+            },
+            yAxis: {
+                type: 'value',
+                name: 'fwefewf',
+                nameLocation: 'middle',
+                nameRotate: 90,
+                nameGap: 38,
+                nameTextStyle: {
+                    fontSize: 16,
+                    fontWeight: 80
+                }
+
+
+            },
+            series: [{
+                symbolSize: 18,
+                data: series,
+                type: 'scatter'
+            }]
+        };
+
+        // Push the ECharts options
+        MashupPlatform.wiring.pushEvent("EChart-options", EChartOptions);
+
     };
 
     init();
